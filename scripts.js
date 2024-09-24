@@ -1,7 +1,16 @@
+// Cotação de moedas do dia
+const USD = 5.45
+const EUR = 6.10
+const GBP = 7.32
+
+
 // Obtendo os elementos do formulário
 const form = document.querySelector("form")
 const amount = document.getElementById("amount")
 const currency = document.getElementById("currency")
+const footer = document.querySelector("main footer")
+const description = document.getElementById("description")
+const result = document.getElementById("result")
 
 // Manipulando o inpunt amount para receber somente números
 amount.addEventListener("input", (event) => {
@@ -9,9 +18,66 @@ amount.addEventListener("input", (event) => {
     amount.value = amount.value.replace(hasCharactersRegex, "")
 })
 
+
 // Capturando o evento de submit (enviar) do formulário
 form.onsubmit = (event) => {
     event.preventDefault()
 
-    console.log(currency.value)
+    switch(currency.value) {
+        case 'USD':
+            convertCurrency(amount.value, USD, "US$")
+            break
+        case 'EUR':
+            convertCurrency(amount.value, EUR, "€")
+            break
+        case 'GBP':
+            convertCurrency(amount.value, USD, "£")
+            break
+        default:
+            convertCurrency(amount.value, USD, currency.value)
+            break
+    }
+
+}
+
+
+// Função para converter a moeda
+function convertCurrency(amount, price, symbol) {
+    try {
+        // Exibindo a cotação da moeda selecionada
+        description.textContent = `${symbol} 1 = ${formatCurrencyBRL(price)}`
+
+        // Calcula o resultado total
+        let total = amount * price
+
+        if (isNaN(total)) {
+            return alert("Por favor. Digite somente números")
+        }
+
+        // Formata o resultado total
+        total = formatCurrencyBRL(total).replace("R$", "")
+
+        // Exibe o resultado total
+        result.textContent = `${total} Reais`
+
+        // Aplica a classe que exibe o footer para mostrar o resultado
+        footer.classList.add("show-result")
+
+
+    } catch (error) {
+        // Remove a classe do footer removendo ele da tela
+        footer.classList.remove("show-result")
+        
+        console.log(error)
+        alert("Não foi possível converter. Tente novamente mais tarde.")
+    }
+}
+
+// Formata a moeda em Real Brasileiro
+function formatCurrencyBRL(value) {
+    // Converte para número | Para utilizar o toLocaleString para formatar em BRL
+    return Number(value).toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+    })
 }
