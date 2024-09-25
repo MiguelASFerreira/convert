@@ -1,7 +1,7 @@
 # Site de Conversão
 > Status do Projeto: Em andamento
 
-![image](https://github.com/user-attachments/assets/ddfeda53-743e-44a3-a4bc-0d5849a027ff)
+![image](https://github.com/user-attachments/assets/f2ef3827-7044-4bd7-ac00-ebb313e1f3f9)
 
 Este é um dos projetos feitos durante a minha pós-graduação na Rocketseat, 1° projeto onde foi feito a implementação de javascript
 
@@ -19,6 +19,6 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 1. Clone o repositório:
    
    ```bash
-   git clone ...
+   git clone https://github.com/MiguelASFerreira/convert.git
 ---
 ![logo_rocketseat](https://github.com/user-attachments/assets/e14b2dec-f2bb-451e-b650-bf83f767d714)
